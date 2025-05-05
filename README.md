@@ -1,5 +1,9 @@
 # Página Web de Componentes de Computadora / Computer Components Website
 
+Kevin Maximiliano Vazquez Aguilar
+
+Universidad Politecnica de Santa Rosa Jauregui
+
 Este proyecto es una página web informativa sobre componentes de computadoras, desarrollada con HTML, CSS, Bootstrap 5, PHP y MySQL.
 
 ---
@@ -8,7 +12,7 @@ This project is an informative website about computer components, developed usin
 
 ---
 
-## 🌐 Descripción / Description
+##  Descripción / Description
 
 ### Español
 - Página principal responsiva (`index.php`) diseñada con Bootstrap 5.
@@ -22,7 +26,7 @@ This project is an informative website about computer components, developed usin
 
 ---
 
-## 🛠️ Tecnologías / Technologies
+##  Tecnologías / Technologies
 
 - HTML5  
 - CSS3  
@@ -32,7 +36,7 @@ This project is an informative website about computer components, developed usin
 
 ---
 
-## 🔐 Funcionalidades del Backend / Backend Features
+## Funcionalidades del Backend / Backend Features
 
 ### Español
 - Formulario de inicio de sesión en `login.php` con campos para usuario y contraseña.
@@ -48,7 +52,7 @@ This project is an informative website about computer components, developed usin
 
 ---
 
-## ⚙️ Instalación local / Local Setup
+##  Instalación local / Local Setup
 
 ### Español
 1. Instala [XAMPP](https://www.apachefriends.org/index.html).
@@ -70,32 +74,10 @@ This project is an informative website about computer components, developed usin
 
 ---
 
-## 📁 Estructura / Structure
-
-```
-📦 nombre-del-proyecto
- ┣ 📄 index.php
- ┣ 📄 login.php
- ┣ 📄 conexion.php
- ┣ 📁 css/
- ┣ 📁 js/
- ┣ 📁 img/
- ┗ 📄 validar.php (faltante)
-```
 
 ---
 
-## 👥 Créditos / Credits
-
-Proyecto desarrollado por:
-
-- Tu Nombre
-- Colaborador 1
-- Colaborador 2
-
----
-
-## 📄 Licencia / License
+## Licencia / License
 
 Este proyecto es de uso libre con fines educativos.  
 This project is free to use for educational purposes.
