@@ -1,0 +1,46 @@
+/* Theme adaptations for footer */
+[data-bs-theme="light"] footer {
+    background-color: #f8f9fa !important;
+    color: #212529 !important;
+}
+
+/* Improved form input styling for better visibility */
+[data-bs-theme="light"] .login-container .form-control {
+    background-color: #ffffff;
+    color: #212529;
+    border-color: #ced4da;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+[data-bs-theme="dark"] .login-container .form-control {
+    background-color: #343a40;
+    color: #f8f9fa;
+    border-color: #495057;
+}
+
+/* Ensure form inputs have clear differentiation */
+.login-container .form-control {
+    transition: all 0.3s ease;
+    padding: 10px;
+}
+
+[data-bs-theme="light"] .login-container .form-control:focus {
+    background-color: #f1f3f5;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+}
+
+[data-bs-theme="dark"] .login-container .form-control:focus {
+    background-color: #495057;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+}
+
+/* Additional contrast for labels */
+[data-bs-theme="light"] .login-container .form-label {
+    color: #495057;
+}
+
+[data-bs-theme="dark"] .login-container .form-label {
+    color: #f8f9fa;
+}
