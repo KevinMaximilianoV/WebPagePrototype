@@ -40,13 +40,13 @@ This project is an informative website about computer components, developed usin
 
 ### Español
 - Formulario de inicio de sesión en `login.php` con campos para usuario y contraseña.
-- Validación pendiente en `validar.php`.
+- Bloqueo de acceso a carrito de compras si el inicio de sesión no es valido.
 - Conexión a base de datos con `conexion.php` usando MySQLi.
 - Base de datos llamada `rebibanelserber`.
 
 ### English
 - Login form in `login.php` with fields for username and password.
-- Validation handled by `validar.php` (not provided).
+- Blocks the shopping cart if the login is not valid.
 - MySQL connection via `conexion.php` using MySQLi.
 - Database name: `rebibanelserber`.
 
