@@ -2,51 +2,52 @@
 session_start();
 
 // Check if user is already logged in
-if(isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+if (isset($_SESSION['user_id'])) {
+    header('Location: index.php');
     exit();
 }
 
 // Database connection
-$conn = new mysqli("localhost", "root", "", "rebibanelserber");
+$conn = new mysqli('localhost', 'kevin_concurrente', '72seasons', 'rebibanelserber');
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die('Connection failed: ' . $conn->connect_error);
 }
 
-$error = "";
+$error = '';
 
 // Process login form
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $conn->real_escape_string($_POST['username']);
     $password = $_POST['password'];
-    
-    $sql = "SELECT id, username, password FROM users WHERE username = ?";
+
+    $sql = 'SELECT id, username, password, user_type FROM users WHERE username = ?';
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
+    $stmt->bind_param('s', $username);
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     if ($result->num_rows == 1) {
         $user = $result->fetch_assoc();
-        
+
         // Verify password (using password_verify for hashed passwords)
         if (password_verify($password, $user['password'])) {
             // Set session variables
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
-            
+            $_SESSION['user_type'] = $user['user_type'];
+
             // Redirect to home page
-            header("Location: index.php");
+            header('Location: index.php');
             exit();
         } else {
-            $error = "Invalid username or password";
+            $error = 'Invalid username or password';
         }
     } else {
-        $error = "Invalid username or password";
+        $error = 'Invalid username or password';
     }
-    
+
     $stmt->close();
 }
 
@@ -100,11 +101,11 @@ $conn->close();
             <div class="login-container">
                 <h2 class="text-center mb-4">Login</h2>
                 
-                <?php if($error): ?>
+                <?php if ($error): ?>
                     <div class="alert alert-danger"><?php echo $error; ?></div>
                 <?php endif; ?>
                 
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
                         <input type="text" class="form-control" id="username" name="username" required>

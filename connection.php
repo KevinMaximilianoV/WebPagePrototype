@@ -1,8 +1,8 @@
 <?php
 
 $dbhost ="localhost";
-$dbuser = "root";
-$dbpass = "";
+$dbuser = "kevin_concurrente";
+$dbpass = "72seasons";
 $dbname = "rebibanelserber";
 
 if(!$con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname))

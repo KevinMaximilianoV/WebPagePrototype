@@ -2,133 +2,132 @@
 session_start();
 
 // Check if user is logged in
-if(!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
     exit();
 }
 
 // Database connection
-$conn = new mysqli("localhost", "root", "", "rebibanelserber");
+$conn = new mysqli('localhost', 'kevin_concurrente', '72seasons', 'rebibanelserber');
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die('Connection failed: ' . $conn->connect_error);
 }
 
 $user_id = $_SESSION['user_id'];
-$message = "";
+$message = '';
 
 // Process remove from cart
-if(isset($_GET['remove'])) {
-    $cart_id = (int)$_GET['remove'];
-    
-    $sql = "DELETE FROM cart WHERE id = ? AND user_id = ?";
+if (isset($_GET['remove'])) {
+    $cart_id = (int) $_GET['remove'];
+
+    $sql = 'DELETE FROM cart WHERE id = ? AND user_id = ?';
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $cart_id, $user_id);
-    
-    if($stmt->execute()) {
-        $message = "Item removed from cart";
+    $stmt->bind_param('ii', $cart_id, $user_id);
+
+    if ($stmt->execute()) {
+        $message = 'Item removed from cart';
     } else {
-        $message = "Error removing item: " . $conn->error;
+        $message = 'Error removing item: ' . $conn->error;
     }
 }
 
 // Process update quantity
-if(isset($_POST['update_cart'])) {
-    foreach($_POST['quantity'] as $cart_id => $quantity) {
-        $cart_id = (int)$cart_id;
-        $quantity = (int)$quantity;
-        
-        if($quantity > 0) {
-            $sql = "UPDATE cart SET quantity = ? WHERE id = ? AND user_id = ?";
+if (isset($_POST['update_cart'])) {
+    foreach ($_POST['quantity'] as $cart_id => $quantity) {
+        $cart_id = (int) $cart_id;
+        $quantity = (int) $quantity;
+
+        if ($quantity > 0) {
+            $sql = 'UPDATE cart SET quantity = ? WHERE id = ? AND user_id = ?';
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("iii", $quantity, $cart_id, $user_id);
+            $stmt->bind_param('iii', $quantity, $cart_id, $user_id);
             $stmt->execute();
         }
     }
-    
-    $message = "Cart updated successfully";
+
+    $message = 'Cart updated successfully';
 }
 
 // Process checkout
-if(isset($_POST['checkout'])) {
+if (isset($_POST['checkout'])) {
     // Start transaction
     $conn->begin_transaction();
-    
+
     try {
         // Calculate total amount
         $total_amount = 0;
-        
-        $sql = "SELECT c.id, p.id as product_id, p.name, p.price, c.quantity 
+
+        $sql = 'SELECT c.id, p.id as product_id, p.name, p.price, c.quantity 
                 FROM cart c 
                 JOIN products p ON c.product_id = p.id 
-                WHERE c.user_id = ?";
+                WHERE c.user_id = ?';
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $user_id);
+        $stmt->bind_param('i', $user_id);
         $stmt->execute();
         $result = $stmt->get_result();
-        
-        if($result->num_rows > 0) {
+
+        if ($result->num_rows > 0) {
             // Calculate total
-            while($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
                 $total_amount += $row['price'] * $row['quantity'];
             }
-            
-            
+
             // Create order
-            $sql = "INSERT INTO orders (user_id, total_amount) VALUES (?, ?)";
+            $sql = 'INSERT INTO orders (user_id, total_amount) VALUES (?, ?)';
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("id", $user_id, $total_amount);
+            $stmt->bind_param('id', $user_id, $total_amount);
             $stmt->execute();
-            
+
             $order_id = $conn->insert_id;
-            
+
             // Reset result pointer
             $result->data_seek(0);
-            
+
             // Add order items
-            $sql = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
+            $sql = 'INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)';
             $stmt = $conn->prepare($sql);
-            
-            while($row = $result->fetch_assoc()) {
-                $stmt->bind_param("iiid", $order_id, $row['product_id'], $row['quantity'], $row['price']);
+
+            while ($row = $result->fetch_assoc()) {
+                $stmt->bind_param('iiid', $order_id, $row['product_id'], $row['quantity'], $row['price']);
                 $stmt->execute();
             }
-            $sql = "UPDATE products p 
+            $sql = 'UPDATE products p 
             JOIN order_items oi ON p.id = oi.product_id 
             SET p.stock = p.stock - oi.quantity 
-            WHERE oi.order_id = ?";
+            WHERE oi.order_id = ?';
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $order_id);
+            $stmt->bind_param('i', $order_id);
             $stmt->execute();
-            
+
             // Clear cart
-            $sql = "DELETE FROM cart WHERE user_id = ?";
+            $sql = 'DELETE FROM cart WHERE user_id = ?';
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $user_id);
+            $stmt->bind_param('i', $user_id);
             $stmt->execute();
-            
+
             // Commit transaction
             $conn->commit();
-            
-            $message = "Order placed successfully! Thank you for your purchase.";
+
+            $message = 'Order placed successfully! Thank you for your purchase.';
         } else {
-            $message = "Your cart is empty";
+            $message = 'Your cart is empty';
         }
     } catch (Exception $e) {
         // Rollback on error
         $conn->rollback();
-        $message = "Error processing order: " . $e->getMessage();
+        $message = 'Error processing order: ' . $e->getMessage();
     }
 }
 
 // Get cart items
-$sql = "SELECT c.id, p.id as product_id, p.name, p.price, p.image_url, c.quantity 
+$sql = 'SELECT c.id, p.id as product_id, p.name, p.price, p.image_url, c.quantity 
         FROM cart c 
         JOIN products p ON c.product_id = p.id 
-        WHERE c.user_id = ?";
+        WHERE c.user_id = ?';
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
+$stmt->bind_param('i', $user_id);
 $stmt->execute();
 $cart_items = $stmt->get_result();
 
@@ -179,14 +178,14 @@ $total = 0;
     <div class="container mt-4">
         <h2>Your Shopping Cart</h2>
         
-        <?php if($message): ?>
+        <?php if ($message): ?>
             <div class="alert <?php echo (strpos($message, 'Error') !== false) ? 'alert-danger' : 'alert-success'; ?>">
                 <?php echo $message; ?>
             </div>
         <?php endif; ?>
         
-        <?php if($cart_items->num_rows > 0): ?>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <?php if ($cart_items->num_rows > 0): ?>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -199,7 +198,7 @@ $total = 0;
                             </tr>
                         </thead>
                         <tbody>
-                            <?php while($item = $cart_items->fetch_assoc()): ?>
+                            <?php while ($item = $cart_items->fetch_assoc()): ?>
                                 <?php $subtotal = $item['price'] * $item['quantity']; ?>
                                 <?php $total += $subtotal; ?>
                                 <tr>

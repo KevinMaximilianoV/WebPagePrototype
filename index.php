@@ -37,11 +37,14 @@ session_start();
                     </button>
                     <a href="#" id="cart-button" class="btn btn-outline-light me-2"><i class="fas fa-shopping-cart"></i> Cart</a>
                     <?php
-                    if(isset($_SESSION['user_id'])) {
+                    if (isset($_SESSION['user_id'])) {
                         echo '<a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>';
                     } else {
                         echo '<a href="login.php" class="btn btn-outline-light me-2"><i class="fas fa-sign-in-alt"></i> Login</a>';
                         echo '<a href="signup.php" class="btn btn-outline-light"><i class="fas fa-user-plus"></i> Sign Up</a>';
+                    }
+                    if ((int) $_SESSION['user_type'] == 2) {
+                        echo '<a href="adminpanel.php" class="btn btn-outline-light me-2"><i class="fa-solid fa-code"></i> Admin Panel</a>';
                     }
                     ?>
                 </div>
@@ -100,20 +103,20 @@ session_start();
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
         <?php
         // Database connection
-        $conn = new mysqli("localhost", "root", "", "rebibanelserber");
+        $conn = new mysqli('localhost', 'kevin_concurrente', '72seasons', 'rebibanelserber');
 
         // Check connection
         if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+            die('Connection failed: ' . $conn->connect_error);
         }
 
         // Fetch products with stock
-        $sql = "SELECT id, name, price, image_url, stock FROM products";
+        $sql = 'SELECT id, name, price, image_url, stock FROM products';
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            while($product = $result->fetch_assoc()) {
-        ?>
+            while ($product = $result->fetch_assoc()) {
+                ?>
             <div class="col">
                 <div class="card h-100">
                     <img src="<?php echo $product['image_url']; ?>" class="card-img-top p-3" alt="<?php echo $product['name']; ?>">
@@ -125,12 +128,12 @@ session_start();
                     </div>
                 </div>
             </div>
-        <?php 
+        <?php
             }
         }
         $conn->close();
         ?>
-    </div>
+    </div>  
 </div>
 
 
@@ -152,7 +155,7 @@ session_start();
             button.addEventListener('click', function() {
                 const productId = this.getAttribute('data-id');
                 
-                <?php if(!isset($_SESSION['user_id'])): ?>
+                <?php if (!isset($_SESSION['user_id'])): ?>
                     // User is not logged in
                     alert('Please login to add items to your cart');
                     window.location.href = 'login.php';
@@ -191,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cartButton.addEventListener('click', function(event) {
         event.preventDefault();
         
-        <?php if(isset($_SESSION['user_id'])): ?>
+        <?php if (isset($_SESSION['user_id'])): ?>
             // User is logged in, redirect to cart page
             window.location.href = 'cart.php';
         <?php else: ?>

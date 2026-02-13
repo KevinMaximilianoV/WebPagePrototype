@@ -1,72 +1,76 @@
 <?php
 session_start();
 
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 // Check if user is already logged in
-if(isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+if (isset($_SESSION['user_id'])) {
+    header('Location: index.php');
     exit();
 }
 
 // Database connection
-$conn = new mysqli("localhost", "root", "", "rebibanelserber");
+$conn = new mysqli('localhost', 'kevin_concurrente', '72seasons', 'rebibanelserber');
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die('Connection failed: ' . $conn->connect_error);
 }
 
-$error = "";
-$success = "";
+$error = '';
+$success = '';
 
 // Process signup form
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $conn->real_escape_string($_POST['username']);
     $email = $conn->real_escape_string($_POST['email']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-    
+
     // Validate input
-    if(strlen($username) < 3) {
-        $error = "Username must be at least 3 characters";
-    } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = "Invalid email format";
-    } elseif(strlen($password) < 6) {
-        $error = "Password must be at least 6 characters";
-    } elseif($password != $confirm_password) {
-        $error = "Passwords do not match";
+    if (strlen($username) < 3) {
+        $error = 'Username must be at least 3 characters';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = 'Invalid email format';
+    } elseif (strlen($password) < 6) {
+        $error = 'Password must be at least 6 characters';
+    } elseif ($password != $confirm_password) {
+        $error = 'Passwords do not match';
     } else {
         // Check if username already exists
-        $sql = "SELECT id FROM users WHERE username = ?";
+        $sql = 'SELECT id FROM users WHERE username = ?';
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
         if ($result->num_rows > 0) {
-            $error = "Username already exists";
+            $error = 'Username already exists';
         } else {
             // Check if email already exists
-            $sql = "SELECT id FROM users WHERE email = ?";
+            $sql = 'SELECT id FROM users WHERE email = ?';
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $email);
+            $stmt->bind_param('s', $email);
             $stmt->execute();
             $result = $stmt->get_result();
-            
+
             if ($result->num_rows > 0) {
-                $error = "Email already in use";
+                $error = 'Email already in use';
             } else {
                 // Hash password
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                
+
                 // Insert new user
-                $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+                $sql = 'INSERT INTO users (username, email, password, user_type) VALUES (?, ?, ?, 1)';
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("sss", $username, $email, $hashed_password);
-                
+                $stmt->bind_param('sss', $username, $email, $hashed_password);
+
                 if ($stmt->execute()) {
-                    $success = "Account created successfully. You can now login.";
+                    $success = 'Account created successfully. You can now login.';
                 } else {
-                    $error = "Error: " . $stmt->error;
+                    $error = 'Error: ' . $stmt->error;
                 }
             }
         }
@@ -123,15 +127,15 @@ $conn->close();
             <div class="login-container">
             <h2 class="text-center mb-4">Create an Account</h2>
             
-            <?php if($error): ?>
+            <?php if ($error): ?>
                 <div class="alert alert-danger"><?php echo $error; ?></div>
             <?php endif; ?>
             
-            <?php if($success): ?>
+            <?php if ($success): ?>
                 <div class="alert alert-success"><?php echo $success; ?></div>
             <?php endif; ?>
             
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" required>
