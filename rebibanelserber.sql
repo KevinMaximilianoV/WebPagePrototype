@@ -145,16 +145,17 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `user_type` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
-(1, 'ola', 'ola@gmail.com', '$2y$10$J5kf5gNuWoFmSxDQhuWKBueY20dHdVqEaXA8DXLppaNV4oiFCkQ9e', '2025-03-25 19:13:49'),
-(2, 'hola', 'hola@gmail.com', '$2y$10$hgItUp/jg/u/5LaFX41.Re2AI5UzKRTbJpnB6m54D5ItCiZFKnPpm', '2025-03-26 19:29:13');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `user_type`) VALUES
+(1, 'ola', 'ola@gmail.com', '$2y$10$J5kf5gNuWoFmSxDQhuWKBueY20dHdVqEaXA8DXLppaNV4oiFCkQ9e', '2025-03-25 19:13:49', 2),
+(2, 'hola', 'hola@gmail.com', '$2y$10$hgItUp/jg/u/5LaFX41.Re2AI5UzKRTbJpnB6m54D5ItCiZFKnPpm', '2025-03-26 19:29:13', 1);
 
 --
 -- Índices para tablas volcadas

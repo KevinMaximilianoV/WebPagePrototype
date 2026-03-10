@@ -25,7 +25,7 @@ if ($quantity < 1) {
 }
 
 // Database connection
-$conn = new mysqli('localhost', 'root', '', 'rebibanelserber');
+$conn = new mysqli('localhost', 'kevin_concurrente', '72seasons', 'rebibanelserber');
 
 // Check connection
 if ($conn->connect_error) {
