@@ -79,16 +79,16 @@ $conn->close();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
+                        <a class="nav-link" href="index.php">Inicio</a>
                     </li>
                 </ul>
                 <div class="d-flex">
                 <button id="theme-toggle" class="btn btn-outline-light me-2">
                         <i class="fas fa-moon" id="theme-icon"></i> 
-                        <span id="theme-text">Dark Mode</span>
+                        <span id="theme-text">Modo Oscuro</span>
                     </button>
-                    <a href="login.php" class="btn btn-outline-light me-2 active"><i class="fas fa-sign-in-alt"></i> Login</a>
-                    <a href="signup.php" class="btn btn-outline-light"><i class="fas fa-user-plus"></i> Sign Up</a>
+                    <a href="login.php" class="btn btn-outline-light me-2 active"><i class="fas fa-sign-in-alt"></i> Iniciar Sesion</a>
+                    <a href="signup.php" class="btn btn-outline-light"><i class="fas fa-user-plus"></i> Registrarse</a>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@ $conn->close();
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="login-container">
-                <h2 class="text-center mb-4">Login</h2>
+                <h2 class="text-center mb-4">Iniciar Sesion</h2>
                 
                 <?php if ($error): ?>
                     <div class="alert alert-danger"><?php echo $error; ?></div>
@@ -107,18 +107,18 @@ $conn->close();
                 
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                     <div class="mb-3">
-                        <label for="username" class="form-label">Username or Mail</label>
+                        <label for="username" class="form-label">Usuario o Correo</label>
                         <input type="text" class="form-control" id="username" name="username" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label">Contraseña</label>
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                    <button type="submit" class="btn btn-primary w-100">Iniciar Sesion</button>
                 </form>
                 
                 <div class="mt-3 text-center">
-                    <p>Don't have an account? <a href="signup.php">Sign up here</a></p>
+                    <p>No tienes una cuenta? <a href="signup.php">Registrate aqui</a></p>
                 </div>
             </div>
         </div>

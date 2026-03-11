@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modify Products - TuPC</title>
+    <title>Modificar Productos - TuPC</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
@@ -56,20 +56,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Home</a>
+                        <a class="nav-link active" href="index.php">Inicio</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
                     <!-- Theme Toggle Button -->
                     <button id="theme-toggle" class="btn btn-outline-light me-2">
                         <i class="fas fa-moon" id="theme-icon"></i> 
-                        <span id="theme-text">Dark Mode</span>
+                        <span id="theme-text">Modo Oscuro</span>
                     </button>
                     
                     <?php
                     if (isset($_SESSION['user_id'])) {
-                        echo '<a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>';
-                        echo '<a href="adminpanel.php" class="btn btn-outline-light me-2"><i class="fa-solid fa-code"></i> Admin Panel</a>';
+                        echo '<a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a>';
+                        echo '<a href="adminpanel.php" class="btn btn-outline-light me-2"><i class="fa-solid fa-code"></i> Panel de Administracion</a>';
                     }
 
                     ?>
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
         
         <div class="flex-grow-1">
             <h5 class="card-title"><?php echo htmlspecialchars($product['name']); ?></h5>
-            <p class="card-text mb-1">Stock: <?php echo $product['stock']; ?></span> units</p>
+            <p class="card-text mb-1">Stock: <?php echo $product['stock']; ?></span> unidades</p>
             <p class="card-text fw-bold fs-4 text-success">$<?php echo number_format($product['price'], 2); ?></p>
         </div>
         
@@ -114,14 +114,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
 <!--Edit Button-->
             <a href="edit.php?id=<?php echo $product['id']; ?>" 
                class="btn btn-warning">
-                <i class="fas fa-edit"></i> Edit
+                <i class="fas fa-edit"></i> Editar
             </a>
             
 <!--Delete Button-->
             <form method="POST" action="" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');" class="m-0">
                 <input type="hidden" name="delete_id" value="<?php echo $product['id']; ?>">
                 <button type="submit" class="btn btn-danger w-100">
-                    <i class="fas fa-trash"></i> Delete
+                    <i class="fas fa-trash"></i> Eliminar
                 </button>
             </form>
         </div>

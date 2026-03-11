@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modify Products - TuPC</title>
+    <title>Modificar Productos - TuPC</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Home</a>
+                        <a class="nav-link active" href="index.php">Inicio</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
@@ -82,8 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     
                     <?php
                     if (isset($_SESSION['user_id'])) {
-                        echo '<a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>';
-                        echo '<a href="adminpanel.php" class="btn btn-outline-light me-2"><i class="fa-solid fa-code"></i> Admin Panel</a>';
+                        echo '<a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a>';
+                        echo '<a href="adminpanel.php" class="btn btn-outline-light me-2"><i class="fa-solid fa-code"></i> Panel de Administracion</a>';
                     }
 
                     ?>
@@ -92,17 +92,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </nav>
 <div class="container mt-5">
-    <h2>Edit Product</h2>
+    <h2>Modificar Producto</h2>
     <form method="POST" class="mt-4">
         <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
         
         <div class="mb-3">
-            <label class="form-label">Product Name</label>
+            <label class="form-label">Nombre del Producto</label>
             <input type="text" name="name" class="form-control" value="<?php echo htmlspecialchars($product['name']); ?>" required>
         </div>
         
         <div class="mb-3">
-            <label class="form-label">Price</label>
+            <label class="form-label">Precio</label>
             <input type="number" step="0.01" name="price" class="form-control" value="<?php echo $product['price']; ?>" required>
         </div>
         
@@ -112,12 +112,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         
         <div class="mb-3">
-            <label class="form-label">Image URL</label>
+            <label class="form-label">URL de la Imagen</label>
             <input type="url" name="image_url" class="form-control" value="<?php echo htmlspecialchars($product['image_url']); ?>" required>
         </div>
         
-        <button type="submit" class="btn btn-primary">Update Product</button>
-        <a href="modify.php" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Actualizar Producto</button>
+        <a href="modify.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
  <!-- Footer -->

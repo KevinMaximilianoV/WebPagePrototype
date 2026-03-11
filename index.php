@@ -6,7 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuPC - Home</title>
+    <title>TuPC - Inicio</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
@@ -26,25 +26,25 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Home</a>
+                        <a class="nav-link active" href="index.php">Inicio</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
                     <!-- Theme Toggle Button -->
                     <button id="theme-toggle" class="btn btn-outline-light me-2">
                         <i class="fas fa-moon" id="theme-icon"></i> 
-                        <span id="theme-text">Dark Mode</span>
+                        <span id="theme-text">Modo Oscuro</span>
                     </button>
-                    <a href="#" id="cart-button" class="btn btn-outline-light me-2"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    <a href="#" id="cart-button" class="btn btn-outline-light me-2"><i class="fas fa-shopping-cart"></i> Carrito</a>
                     <?php
                     if (isset($_SESSION['user_id'])) {
-                        echo '<a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>';
+                        echo '<a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a>';
                     } else {
-                        echo '<a href="login.php" class="btn btn-outline-light me-2"><i class="fas fa-sign-in-alt"></i> Login</a>';
-                        echo '<a href="signup.php" class="btn btn-outline-light"><i class="fas fa-user-plus"></i> Sign Up</a>';
+                        echo '<a href="login.php" class="btn btn-outline-light me-2"><i class="fas fa-sign-in-alt"></i> Iniciar Sesion</a>';
+                        echo '<a href="signup.php" class="btn btn-outline-light"><i class="fas fa-user-plus"></i> Registrarse</a>';
                     }
                     if ((int) $_SESSION['user_type'] == 2) {
-                        echo '<a href="adminpanel.php" class="btn btn-outline-light me-2"><i class="fa-solid fa-code"></i> Admin Panel</a>';
+                        echo '<a href="adminpanel.php" class="btn btn-outline-light me-2"><i class="fa-solid fa-code"></i> Panel de Administracion</a>';
                     }
                     ?>
                 </div>
@@ -66,22 +66,22 @@ session_start();
             <div class="carousel-item active">
                 <img src="https://imgs.search.brave.com/7mcVKtyDWhSdefszZaylRwFKCAAMR7ygFroDc5S-VO0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9vY2Vs/b3QuY29tLm14L3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIzLzEy/L0NTLTg3Ni0zLnBu/Zw" alt="High-end Graphics Cards" class="d-block w-100 carousel-img">
                 <div class="carousel-caption">
-                    <h3 class="theme-heading">All of your hardware, in one place</h3>
-                    <p class="theme-text">Find the perfect parts for your PC build</p>
+                    <h3 class="theme-heading">Todo el hardware, en un solo lugar</h3>
+                    <p class="theme-text">Encuentra las piezas perfectas para tu PC</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="https://i.imgur.com/SmC688J.png" alt="Gaming Peripherals" class="d-block w-100 carousel-img">
                 <div class="carousel-caption">
-                    <h3 class="theme-heading">Top notch equipment</h3>
-                    <p class="theme-text">Quality products from trusted brands</p>
+                    <h3 class="theme-heading">Equipamiento de primera</h3>
+                    <p class="theme-text">Productos de calidad de marcas confiables</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="https://i.imgur.com/mrJh4qe.png" alt="PC Building Supplies" class="d-block w-100 carousel-img">
                 <div class="carousel-caption">
-                    <h3 class="theme-heading">At the best price you could've asked</h3>
-                    <p class="theme-text">Affordable options for every budget</p>
+                    <h3 class="theme-heading">Al mejor precio que pudieras pedir</h3>
+                    <p class="theme-text">Opciones asequibles para cada presupuesto</p>
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@ session_start();
     <!-- Featured Products Section -->
     <!-- Featured Products Section -->
 <div class="container mb-5">
-    <h2 class="text-center mb-4">Featured Products</h2>
+    <h2 class="text-center mb-4">Productos Destacados</h2>
     
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
         <?php
@@ -122,9 +122,9 @@ session_start();
                     <img src="<?php echo $product['image_url']; ?>" class="card-img-top p-3" alt="<?php echo $product['name']; ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $product['name']; ?></h5>
-                        <p class="card-text">Stock: <?php echo $product['stock']; ?> units</p>
+                        <p class="card-text">Stock: <?php echo $product['stock']; ?> unidades</p>
                         <p class="card-text fw-bold">$<?php echo number_format($product['price'], 2); ?></p>
-                        <button class="btn btn-primary w-100 add-to-cart" data-id="<?php echo $product['id']; ?>"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <button class="btn btn-primary w-100 add-to-cart" data-id="<?php echo $product['id']; ?>"><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
                     </div>
                 </div>
             </div>

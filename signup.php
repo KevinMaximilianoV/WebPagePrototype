@@ -85,7 +85,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - TuPC</title>
+    <title>Registrarse - TuPC</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
@@ -105,16 +105,16 @@ $conn->close();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
+                        <a class="nav-link" href="index.php">Inicio</a>
                     </li>
                 </ul>
                 <div class="d-flex">
                 <button id="theme-toggle" class="btn btn-outline-light me-2">
                         <i class="fas fa-moon" id="theme-icon"></i> 
-                        <span id="theme-text">Dark Mode</span>
+                        <span id="theme-text">Modo Oscuro</span>
                     </button>
-                    <a href="login.php" class="btn btn-outline-light me-2"><i class="fas fa-sign-in-alt"></i> Login</a>
-                    <a href="signup.php" class="btn btn-outline-light active"><i class="fas fa-user-plus"></i> Sign Up</a>
+                    <a href="login.php" class="btn btn-outline-light me-2"><i class="fas fa-sign-in-alt"></i> Iniciar Sesion</a>
+                    <a href="signup.php" class="btn btn-outline-light active"><i class="fas fa-user-plus"></i> Registrarse</a>
                 </div>
             </div>
         </div>
@@ -125,7 +125,7 @@ $conn->close();
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="login-container">
-            <h2 class="text-center mb-4">Create an Account</h2>
+            <h2 class="text-center mb-4">Crear una Cuenta</h2>
             
             <?php if ($error): ?>
                 <div class="alert alert-danger"><?php echo $error; ?></div>
@@ -137,32 +137,32 @@ $conn->close();
             
             <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                 <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
+                    <label for="username" class="form-label">Nombre de Usuario</label>
                     <input type="text" class="form-control" id="username" name="username" required>
-                    <div class="form-text text-muted">Username must be at least 3 characters.</div>
+                    <div class="form-text text-muted">El nombre de usuario debe tener al menos 3 caracteres.</div>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label">Correo Electronico</label>
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label">Contraseña</label>
                     <input type="password" class="form-control" id="password" name="password" required>
-                    <div class="form-text text-muted">Password must be at least 6 characters.</div>
+                    <div class="form-text text-muted">La contraseña debe tener al menos 6 caracteres.</div>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
                     <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
                 </div>
                 
-                <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                <button type="submit" class="btn btn-primary w-100">Crear Cuenta</button>
             </form>
             
             <div class="mt-3 text-center">
-                <p>Already have an account? <a href="login.php">Login here</a></p>
+                <p>¿Ya tienes una cuenta? <a href="login.php">Inicia Sesión aqui</a></p>
             </div>
         </div>
     </div>

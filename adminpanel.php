@@ -24,7 +24,7 @@ $conn->close();
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - TuPC</title>
+    <title>Panel Admin - TuPC</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
@@ -36,29 +36,29 @@ $conn->close();
     <body>
           <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.php">TuPC (Admin Panel)</a>
+            <a class="navbar-brand" href="index.php">TuPC (Panel Admin)</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Home</a>
+                        <a class="nav-link active" href="index.php">Inicio</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
                     <!-- Theme Toggle Button -->
                     <button id="theme-toggle" class="btn btn-outline-light me-2">
                         <i class="fas fa-moon" id="theme-icon"></i> 
-                        <span id="theme-text">Dark Mode</span>
+                        <span id="theme-text">Modo Oscuro</span>
                     </button>
                     
                     <?php
                     if (isset($_SESSION['user_id'])) {
-                        echo '<a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>';
+                        echo '<a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a>';
                     } else {
-                        echo '<a href="login.php" class="btn btn-outline-light me-2"><i class="fas fa-sign-in-alt"></i> Login</a>';
-                        echo '<a href="signup.php" class="btn btn-outline-light"><i class="fas fa-user-plus"></i> Sign Up</a>';
+                        echo '<a href="login.php" class="btn btn-outline-light me-2"><i class="fas fa-sign-in-alt"></i> Iniciar Sesion</a>';
+                        echo '<a href="signup.php" class="btn btn-outline-light"><i class="fas fa-user-plus"></i> Registrarse</a>';
                     }
 
                     ?>
@@ -74,9 +74,9 @@ $conn->close();
                 <div class="card h-100 shadow-lg border-primary text-center p-4">
                     <div class="card-body">
                         <i class="fas fa-plus-circle fa-4x mb-3 text-primary"></i>
-                        <h3 class="card-title">Add Products</h3>
-                        <p class="card-text text-muted">Add new products into the database</p>
-                        <a href="add.php" class="btn btn-primary btn-lg w-100">Enter</a>
+                        <h3 class="card-title">Agregar Productos</h3>
+                        <p class="card-text text-muted">Agregar nuevos productos a la base de datos</p>
+                        <a href="add.php" class="btn btn-primary btn-lg w-100">Entrar</a>
                     </div>
                 </div>
             </div>
@@ -85,9 +85,9 @@ $conn->close();
                 <div class="card h-100 shadow-lg border-warning text-center p-4">
                     <div class="card-body">
                         <i class="fas fa-edit fa-4x mb-3 text-warning"></i>
-                        <h3 class="card-title">Modify Products</h3>
-                        <p class="card-text text-muted">Modify Prices, Stocks, Descriptions, Category and the Image of the product</p>
-                        <a href="modify.php" class="btn btn-warning btn-lg w-100 text-dark">Enter</a>
+                        <h3 class="card-title">Modificar Productos</h3>
+                        <p class="card-text text-muted">Modificar Precios, Stocks, Descripciones, Categorias y la Imagen del Producto</p>
+                        <a href="modify.php" class="btn btn-warning btn-lg w-100 text-dark">Entrar</a>
                     </div>
                 </div>
             </div>

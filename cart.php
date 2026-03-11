@@ -139,7 +139,7 @@ $total = 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart - TuPC</title>
+    <title>Carrito de Compras - TuPC</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
@@ -159,12 +159,12 @@ $total = 0;
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
+                        <a class="nav-link" href="index.php">Inicio</a>
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a href="cart.php" class="btn btn-outline-light me-2 active"><i class="fas fa-shopping-cart"></i> Cart</a>
-                    <a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a href="cart.php" class="btn btn-outline-light me-2 active"><i class="fas fa-shopping-cart"></i> Carrito</a>
+                    <a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a>
                     <button id="theme-toggle" class="btn btn-outline-light me-2">
                         <i class="fas fa-moon" id="theme-icon"></i> 
                         <span id="theme-text">Dark Mode</span>
@@ -176,7 +176,7 @@ $total = 0;
 
     <!-- Shopping Cart -->
     <div class="container mt-4">
-        <h2>Your Shopping Cart</h2>
+        <h2>Tu Carrito de Compras</h2>
         
         <?php if ($message): ?>
             <div class="alert <?php echo (strpos($message, 'Error') !== false) ? 'alert-danger' : 'alert-success'; ?>">
@@ -190,11 +190,11 @@ $total = 0;
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
                                 <th>Subtotal</th>
-                                <th>Actions</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -215,7 +215,7 @@ $total = 0;
                                     <td>$<?php echo number_format($subtotal, 2); ?></td>
                                     <td>
                                         <a href="cart.php?remove=<?php echo $item['id']; ?>" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i> Remove
+                                            <i class="fas fa-trash"></i> Eliminar
                                         </a>
                                     </td>
                                 </tr>
@@ -233,14 +233,14 @@ $total = 0;
                 
                 <div class="d-flex justify-content-between mt-3">
                     <a href="index.php" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Continue Shopping
+                        <i class="fas fa-arrow-left"></i> Seguir Comprando
                     </a>
                     <div>
                         <button type="submit" name="update_cart" class="btn btn-info me-2">
-                            <i class="fas fa-sync"></i> Update Cart
+                            <i class="fas fa-sync"></i> Actualizar Carrito
                         </button>
                         <button type="submit" name="checkout" class="btn btn-success">
-                            <i class="fas fa-check"></i> Checkout
+                            <i class="fas fa-check"></i> Pagar
                         </button>
                     </div>
                 </div>
@@ -248,9 +248,9 @@ $total = 0;
         <?php else: ?>
             <div class="empty-cart">
                 <i class="fas fa-shopping-cart mb-3"></i>
-                <h3>Your cart is empty</h3>
-                <p>Browse our products and discover amazing PC hardware!</p>
-                <a href="index.php" class="btn btn-primary mt-3">Start Shopping</a>
+                <h3>Tu carrito esta vacio</h3>
+                <p>Explora nuestros productos y descubre increibles componentes de PC!</p>
+                <a href="index.php" class="btn btn-primary mt-3">Comenzar a Comprar</a>
             </div>
         <?php endif; ?>
     </div>

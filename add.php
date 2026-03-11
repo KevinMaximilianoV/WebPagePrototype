@@ -91,19 +91,19 @@ $conn->close();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Home</a>
+                        <a class="nav-link active" href="index.php">Inicio</a>
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
                     <!-- Theme Toggle Button -->
                     <button id="theme-toggle" class="btn btn-outline-light me-2">
                         <i class="fas fa-moon" id="theme-icon"></i> 
-                        <span id="theme-text">Dark Mode</span>
+                        <span id="theme-text">Modo Oscuro</span>
                     </button>
                     <?php
                     if (isset($_SESSION['user_id'])) {
-                        echo '<a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>';
-                        echo '<a href="adminpanel.php" class="btn btn-outline-light me-2"><i class="fa-solid fa-code"></i> Admin Panel</a>';
+                        echo '<a href="logout.php" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a>';
+                        echo '<a href="adminpanel.php" class="btn btn-outline-light me-2"><i class="fa-solid fa-code"></i> Panel Admin</a>';
                     }
                     ?>
                 </div>
@@ -117,7 +117,7 @@ $conn->close();
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="login-container">
-                <h2 class="text-center mb-4">Add new product</h2>
+                <h2 class="text-center mb-4">Agregar Nuevo Producto</h2>
                 
                 <?php if ($error): ?>
                 <div class="alert alert-danger"><?php echo $error; ?></div>
@@ -129,30 +129,30 @@ $conn->close();
                 
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                     <div class="mb-3">
-                        <label for="username" class="form-label">Name of the product</label>
+                        <label for="username" class="form-label">Nombre del Producto</label>
                         <input type="text" class="form-control" id="productname" name="productname" required>
                     </div>
                     <div class="mb-3">
-                        <label for="texr" class="form-label">Description of the Product</label>
+                        <label for="texr" class="form-label">Descripcion del Producto</label>
                         <input type="text" class="form-control" id="description" name="description" required>
                     </div>
                     <div class="mb-3">
-                        <label for="text" class="form-label">Price</label>
+                        <label for="text" class="form-label">Precio</label>
                         <input type="text" class="form-control" id="price" name="price" required>
                     </div>
                     <div class="mb-3">
-                        <label for="text" class="form-label">URL of the Image of the Product</label>
+                        <label for="text" class="form-label">URL de la Imagen del Producto</label>
                         <input type="text" class="form-control" id="product_imageurl" name="product_imageurl" required>
                     </div>
                     <div class="mb-3">
-                        <label for="text" class="form-label">Category</label>
+                        <label for="text" class="form-label">Categoria</label>
                         <input type="text" class="form-control" id="category" name="category" required>
                     </div>
                     <div class="mb-3">
-                        <label for="text" class="form-label">Initial Stock</label>
+                        <label for="text" class="form-label">Stock Inicial</label>
                         <input type="text" class="form-control" id="stock" name="stock" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    <button type="submit" class="btn btn-primary w-100">Agregar Producto</button>
                 </form>
                 </div>
             </div>
